@@ -10134,42 +10134,42 @@ Redis:del(TEAMLANA.."TEAMLANA:Name:Bot")
 return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم حذف اسم البوت ","md",true)   
 end
 
-if text == (Redis:get(TEAMLANA.."Name:Bot") or "تايلر") then
-local NamesBot = (Redis:get(TEAMLANA.."Name:Bot") or "تايلر")
+if text == (Redis:get(TEAMLANA.."Name:Bot") or "لانا") then
+local NamesBot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
 local NameBots = {
-'زعلانه',
-'عيونها وقلبها وخشمها',
-'خلاص يا بابا',
-'لبيه',
-'مش فاضيه ',
-'عيوني',
-'هلا',
-'وش بغيت',
-'مكورنه',
-'نعم روحي',
-'لبيه قلبي',
-'خير',
-'مريضه',
-'وش تريد؟',
+"زعلانه",
+"عيونها وقلبها وخشمها",
+"خلاص يا بابا",
+"لبيه",
+"مش فاضيه ",
+"عيوني",
+"هلا",
+"وش بغيت",
+"مكورنه",
+"نعم روحي",
+"لبيه قلبي",
+"خير",
+"مريضه",
+"وش تريد؟",
 }
 return LuaTele.sendText(msg_chat_id,msg_id, NameBots[math.random(#NameBots)],"md",true)  
 end
 if text == "بوت" then
-local NamesBot = (Redis:get(TEAMLANA.."Name:Bot") or "تايلر")
+local NamesBot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
 local BotName = {
-'انت هطف؟ ',
-'ااقرا اسمي! ',
-'؟؟؟!!!',
-'يا طيب انا مش بوت! ',
-'شتريد؟ ',
-'عندي اسم ترا! ',
-'مو فله ترا',
-'انقلع',
-'توكل',
-'اسمي صعب؟ ',
-'بوت بوت بوت، جننتني انا مش بوت',
-'انطم',
-'ناديني ب اسمي برد',
+"انت هطف؟ ",
+"ااقرا اسمي! ",
+"؟؟؟!!!",
+"يا طيب انا مش بوت! ",
+"شتريد؟ ",
+"عندي اسم ترا! ",
+"مو فله ترا",
+"انقلع",
+"توكل",
+"اسمي صعب؟ ",
+"بوت بوت بوت، جننتني انا مش بوت",
+"انطم",
+"ناديني ب اسمي برد",
 }
 return LuaTele.sendText(msg_chat_id,msg_id,BotName[math.random(#BotName)],"md",true)   
 end

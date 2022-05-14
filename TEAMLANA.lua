@@ -9899,7 +9899,27 @@ end
 Redis:del(TEAMLANA..'TEAMLANA:Texting:DevTEAMLANA')
 return LuaTele.sendText(msg_chat_id,msg_id,'• تم حذف كليشه المطور')
 end
-
+if text == 'المطور' or text == 'مطور' then
+local TextingDevTEAMLANA = Redis:get(TEAMLANA..'Texting:DevTEAMLANA')
+if TextingDevTEAMLANA then 
+return LuaTele.sendText(msg_chat_id,msg_id,TextingDevTEAMLANA,"md",true)  
+else
+local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
+local UserInfo = LuaTele.getUser(Sudo_Id)
+for Name_User in string.gmatch(UserInfo.first_name, "[^%s]+" ) do
+UserInfo.first_name = Name_User
+break
+end 
+if photo.total_count > 0 then
+return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
+'*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*', "md",true)
+else
+return LuaTele.sendText(msg_chat_id,msg_id,
+'*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true) 
+end
+--return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
+end
+end
 if text == 'الاوامر' then
 if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n• الامر يخص : ( '..Controller_Num(7)..' ) ',"md",true)  

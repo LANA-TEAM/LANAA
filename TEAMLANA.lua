@@ -11070,7 +11070,7 @@ end
 end
 
 if text == 'بوت' or text == 'البوت' then
-local photo = LuaTele.getUserProfilePhotos(TEAMLANA)
+>
 local ban = LuaTele.getUser(TEAMLANA)
 local Namebot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
 local BotName = {
@@ -11088,26 +11088,10 @@ local BotName = {
 'انطم',
 'ناديني ب اسمي برد',
 }
-NameBots = BotName[math.random(#BotName)]
-if ban.username then
-Creator = " "..ban.first_name.." "
-else
-Creator = " لانا\n"
-end
-local texxtt = ''..NameBots..''
-if photo.total_count > 0 then
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = Creator, url = 't.me/'..UserBot..'?start'}, 
-},
-}
-local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(NameBots).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
 if text == (Redis:get(TEAMLANA.."Name:Bot") or "لانا") then
-local photo = LuaTele.getUserProfilePhotos(TEAMLANA)
+
 local ban = LuaTele.getUser(TEAMLANA)
 local Namebot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
 local BotName = {
@@ -11126,22 +11110,7 @@ local BotName = {
 'مريضه',
 'وش تريد؟',
 }
-NameBots = BotName[math.random(#BotName)]
-if ban.username then
-Creator = " "..ban.first_name.." "
-else
-Creator = " لانا\n"
-end
-local texxtt = ''..NameBots..''
-if photo.total_count > 0 then
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = Creator, url = 't.me/'..UserBot..'?start'}, 
-},
-}
-local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(NameBots).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+
 end
 end
 

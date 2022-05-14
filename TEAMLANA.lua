@@ -11070,7 +11070,7 @@ end
 end
 
 if text == 'بوت' or text == 'البوت' then
->
+
 local ban = LuaTele.getUser(TEAMLANA)
 local Namebot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
 local BotName = {

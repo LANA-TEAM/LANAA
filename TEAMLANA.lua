@@ -11089,7 +11089,7 @@ local BotName = {
 'ناديني ب اسمي برد',
 }
 end
-end
+
 if text == (Redis:get(TEAMLANA.."Name:Bot") or "لانا") then
 
 local ban = LuaTele.getUser(TEAMLANA)
@@ -11112,7 +11112,7 @@ local BotName = {
 }
 
 end
-end
+
 
 if text == "توب" or text == "التوب" then
 local reply_markup = LuaTele.replyMarkup{

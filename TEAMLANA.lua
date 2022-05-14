@@ -5034,19 +5034,17 @@ sendText(msg_chat_id,Text,0,'md')
 end 
 end 
 end 
-if text == 'السورس' or text == 'سورس' or text == 'ياسورس' or text == 'يا سورس' then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '❲ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓🎖 ❳', url = "https://t.me/trprogram"}
-},
-{
-{text = '- TRAKOS .', url = "https://t.me/TTRAKOS"}
-},
+if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
+video = "https://t.me/lanabot1/2"
+local Name = '**[⌭︙𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝙻𝙰𝙽𝙰](t.me/B_5_J)**'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '𝚃𝙾𝙺𝚈𝙾o',url="https://t.me/X_X_T"},{text = '  ',url="https://t.me/C5CO1"}},
+
+{{text = '𝚂𝙾𝚄𝚁𝙲𝙴', url="https://t.me/B_5_J"},{text = '𝚃𝚆𝙰𝚂𝙾𝙻',url="https://t.me/FYQBOT"}},
 }
-}
-return LuaTele.sendText(msg_chat_id,msg_id,"[ReBack Source .](t.me/trprogram)\n\n[سورس ريباك ،](t.me/trprogram)","md",true, false, false, false,reply_markup)
+local msgg = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendvideo?chat_id=" .. msg_chat_id .. "&video="..video.."&caption=".. URL.escape(Name).."&video="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if text == 'المطور' or text == 'مطور' or text == 'يامطور' or text == 'يا مطور' then
 local reply_markup = LuaTele.replyMarkup{

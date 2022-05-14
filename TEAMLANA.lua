@@ -5046,20 +5046,7 @@ keyboard.inline_keyboard = {
 local msgg = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token.."/sendvideo?chat_id=" .. msg_chat_id .. "&video="..video.."&caption=".. URL.escape(Name).."&video="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
-if text == 'المطور' or text == 'مطور' or text == 'يامطور' or text == 'يا مطور' then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '❲ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓🎖 ❳', url = "https://t.me/trprogram"}
-},
-{
-{text = '- TRAKOS .', url = "https://t.me/TTRAKOS"}
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,"[ReBack Source .](t.me/trprogram)\n\n[سورس ريباك ،](t.me/trprogram)","md",true, false, false, false,reply_markup)
-end
+
 if text == 'تعطيل التحقق' then
 if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n• الامر يخص : ( '..Controller_Num(7)..' ) ',"md",true)  
@@ -9899,6 +9886,7 @@ end
 Redis:del(TEAMLANA..'TEAMLANA:Texting:DevTEAMLANA')
 return LuaTele.sendText(msg_chat_id,msg_id,'• تم حذف كليشه المطور')
 end
+
 if text == 'المطور' or text == 'مطور' then
 local TextingDevTEAMLANA = Redis:get(TEAMLANA..'Texting:DevTEAMLANA')
 if TextingDevTEAMLANA then 
@@ -9920,6 +9908,7 @@ end
 --return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
 end
 end
+
 if text == 'الاوامر' then
 if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n• الامر يخص : ( '..Controller_Num(7)..' ) ',"md",true)  

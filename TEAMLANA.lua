@@ -2929,6 +2929,76 @@ end
 if text == 'رتبتي' then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ رتبتك ↢ '..msg.Name_Controller,"md",true)  
 end
+if text == 'تحكم' then
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*•هذا الامر يخص ( '..Controller_Num(7)..' )* ',"md",true)  
+end
+local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
+TheBasics = Redis:sismember(TEAMLANA.."TEAMLANA:TheBasics:Group"..msg.chat_id,Message_Reply.sender.user_id) 
+Originators = Redis:sismember(TEAMLANA.."TEAMLANA:Originators:Group"..msg.chat_id,Message_Reply.sender.user_id)
+Managers = Redis:sismember(TEAMLANA.."TEAMLANA:Managers:Group"..msg.chat_id,Message_Reply.sender.user_id)
+Addictive = Redis:sismember(TEAMLANA.."TEAMLANA:Addictive:Group"..msg.chat_id,Message_Reply.sender.user_id)
+Distinguished = Redis:sismember(TEAMLANA.."TEAMLANA:Distinguished:Group"..msg.chat_id,Message_Reply.sender.user_id)
+BanGroup = Redis:sismember(TEAMLANA.."TEAMLANA:BanGroup:Group"..msg.chat_id,Message_Reply.sender.user_id)
+SilentGroup = Redis:sismember(TEAMLANA.."TEAMLANA:SilentGroup:Group"..msg.chat_id,Message_Reply.sender.user_id)
+if BanGroup then
+BanGroupz = "✔"
+else
+BanGroupz = "❌"
+end
+if SilentGroup then
+SilentGroupz = "✔"
+else
+SilentGroupz = "❌"
+end
+if TheBasics then
+TheBasicsz = "✔"
+else
+TheBasicsz = "❌"
+end
+if Originators then
+Originatorsz = "✔"
+else
+Originatorsz = "❌"
+end
+if Managers then
+Managersz = "✔"
+else
+Managersz = "❌"
+end
+if Addictive then
+Addictivez = "✔"
+else
+Addictivez = "❌"
+end
+if Distinguished then
+Distinguishedz = "✔"
+else
+Distinguishedz = "❌"
+end
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{
+{text = 'رفع منشئ اساسي : '..TheBasicsz, data =msg.sender.user_id..'/statusTheBasicsz/'..Message_Reply.sender.user_id},{text = 'رفع منشئ : '..Originatorsz, data =msg.sender.user_id..'/statusOriginatorsz/'..Message_Reply.sender.user_id},
+},
+{
+{text = 'رفع مدير : '..Managersz, data =msg.sender.user_id..'/statusManagersz/'..Message_Reply.sender.user_id},{text = 'رفع ادمن : '..Addictivez, data =msg.sender.user_id..'/statusAddictivez/'..Message_Reply.sender.user_id},
+},
+{
+{text = 'رفع مميز : '..Distinguishedz, data =msg.sender.user_id..'/statusDistinguishedz/'..Message_Reply.sender.user_id},
+},
+{
+{text = 'حظر العضو : '..BanGroupz, data =msg.sender.user_id..'/statusban/'..Message_Reply.sender.user_id},{text = 'كتم العضو : '..SilentGroupz, data =msg.sender.user_id..'/statusktm/'..Message_Reply.sender.user_id},
+},
+{
+{text = 'تنزيل الرتب : ', data =msg.sender.user_id..'/statusmem/'..Message_Reply.sender.user_id},
+},
+{
+{text = '- اخفاء الامر ', data ='/delAmr1'}
+}
+}
+}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n• يمكنك تحكم بلعضو عن طريق الازرار .*',"md",false, false, false, false, reply_markup)
+end
 if text == 'معلوماتي' then
 local UserInfo = LuaTele.getUser(msg.sender.user_id)
 local StatusMember = LuaTele.getChatMember(msg_chat_id,msg.sender.user_id).status.luatele

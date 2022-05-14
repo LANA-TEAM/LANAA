@@ -11946,7 +11946,22 @@ data = {
 },
 }
 }
+
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+else
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = 'ضيفني لـ مجموعتك', url = 't.me/'..UserBot..'?startgroup=new'}, 
+},
+{
+{text = 'تحديثات لبوت', url = 't.me/trprogram'}, 
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(TEAMLANA.."TEAMLANA:Start:Bot"),"md",false, false, false, false, reply_markup)
+end
 else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
@@ -11981,19 +11996,6 @@ data = {
 }
 return LuaTele.sendText(msg_chat_id,msg_id,'⌭︙اختار ماتريده من الازرار . ', 'md', false, false, false, false, reply_markup)
 end
-end 
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = 'ضيفني لـ مجموعتك', url = 't.me/'..UserBot..'?startgroup=new'}, 
-},
-{
-{text = 'تحديثات لبوت', url = 't.me/trprogram'}, 
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(TEAMLANA.."TEAMLANA:Start:Bot"),"md",false, false, false, false, reply_markup)
 end
 else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,

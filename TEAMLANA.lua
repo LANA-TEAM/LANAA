@@ -12905,6 +12905,117 @@ LuaTele.editMessageText(ChatId,Msg_id,"⌯ ارسل لي الرد الان", 'md
 end
 end
 
+if Text and Text:match('(%d+)/statusTheBasicsz/(%d+)') and data.Developers then
+local UserId = {Text:match('(%d+)/statusTheBasicsz/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if Redis:sismember(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+
+if Text and Text:match('(%d+)/statusOriginatorsz/(%d+)') and data.TheBasics then
+local UserId = {Text:match('(%d+)/statusOriginatorsz/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then 
+if Redis:sismember(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+
+if Text and Text:match('(%d+)/statusManagersz/(%d+)') and data.Originators then
+local UserId = {Text:match('(%d+)/statusManagersz/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if Redis:sismember(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+
+if Text and Text:match('(%d+)/statusAddictivez/(%d+)') and data.Managers then
+local UserId = {Text:match('(%d+)/statusAddictivez/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if Redis:sismember(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+
+if Text and Text:match('(%d+)/statusDistinguishedz/(%d+)') and data.Addictive then
+local UserId = {Text:match('(%d+)/statusDistinguishedz/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if Redis:sismember(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+
+if Text and Text:match('(%d+)/statusmem/(%d+)') and data.Developers then
+local UserId ={ Text:match('(%d+)/statusmem/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+Redis:srem(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
+Redis:srem(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
+LuaTele.setChatMemberStatus(ChatId,UserId[2],'restricted',{1,1,1,1,1,1,1,1,1})
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+if Text and Text:match('(%d+)/statusban/(%d+)') and data.Addictive then
+local UserId ={ Text:match('(%d+)/statusban/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if StatusCanOrNotCan(ChatId,UserId[2]) then
+return LuaTele.answerCallbackQuery(data.id,"\n•عذرآ لا تستطيع استخدام الامر على ( "..Controller(ChatId,UserId[2]).." } ", true)
+end
+if Redis:sismember(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
+LuaTele.setChatMemberStatus(ChatId,UserId[2],'restricted',{1,1,1,1,1,1,1,1,1})
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
+LuaTele.setChatMemberStatus(ChatId,UserId[2],'banned',0)
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+if Text and Text:match('(%d+)/statusktm/(%d+)') and data.Addictive then
+local UserId ={ Text:match('(%d+)/statusktm/(%d+)')}
+if tonumber(IdUser) == tonumber(UserId[1]) then
+if StatusSilent(ChatId,UserId[2]) then
+return LuaTele.answerCallbackQuery(data.id, "\n•عذرآ لا تستطيع استخدام الامر على ( "..Controller(ChatId,UserId[2]).." } ", true)
+end
+if Redis:sismember(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2]) then
+Redis:srem(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
+else
+Redis:sadd(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
+end
+return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
+end
+end
+if Text and Text:match('/delAmr1') then
+local UserId = Text:match('/delAmr1')
+if data.Addictive then
+return LuaTele.deleteMessages(ChatId,{[1]= Msg_id})
+end
+end
+
 if Text and Text:match('/Mahibes(%d+)') then
 local GetMahibes = Text:match('/Mahibes(%d+)') 
 local NumMahibes = math.random(1,6)

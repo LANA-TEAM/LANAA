@@ -2929,187 +2929,7 @@ end
 if text == 'رتبتي' then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ رتبتك ↢ '..msg.Name_Controller,"md",true)  
 end
-if text == 'تحكم' then
-if not msg.Addictive then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*•هذا الامر يخص ( '..Controller_Num(7)..' )* ',"md",true)  
-end
-local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
-TheBasics = Redis:sismember(TEAMLANA.."TEAMLANA:TheBasics:Group"..msg.chat_id,Message_Reply.sender.user_id) 
-Originators = Redis:sismember(TEAMLANA.."TEAMLANA:Originators:Group"..msg.chat_id,Message_Reply.sender.user_id)
-Managers = Redis:sismember(TEAMLANA.."TEAMLANA:Managers:Group"..msg.chat_id,Message_Reply.sender.user_id)
-Addictive = Redis:sismember(TEAMLANA.."TEAMLANA:Addictive:Group"..msg.chat_id,Message_Reply.sender.user_id)
-Distinguished = Redis:sismember(TEAMLANA.."TEAMLANA:Distinguished:Group"..msg.chat_id,Message_Reply.sender.user_id)
-BanGroup = Redis:sismember(TEAMLANA.."TEAMLANA:BanGroup:Group"..msg.chat_id,Message_Reply.sender.user_id)
-SilentGroup = Redis:sismember(TEAMLANA.."TEAMLANA:SilentGroup:Group"..msg.chat_id,Message_Reply.sender.user_id)
-if BanGroup then
-BanGroupz = "✔"
-else
-BanGroupz = "❌"
-end
-if SilentGroup then
-SilentGroupz = "✔"
-else
-SilentGroupz = "❌"
-end
-if TheBasics then
-TheBasicsz = "✔"
-else
-TheBasicsz = "❌"
-end
-if Originators then
-Originatorsz = "✔"
-else
-Originatorsz = "❌"
-end
-if Managers then
-Managersz = "✔"
-else
-Managersz = "❌"
-end
-if Addictive then
-Addictivez = "✔"
-else
-Addictivez = "❌"
-end
-if Distinguished then
-Distinguishedz = "✔"
-else
-Distinguishedz = "❌"
-end
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
-{
-{text = 'رفع منشئ اساسي : '..TheBasicsz, data =msg.sender.user_id..'/statusTheBasicsz/'..Message_Reply.sender.user_id},{text = 'رفع منشئ : '..Originatorsz, data =msg.sender.user_id..'/statusOriginatorsz/'..Message_Reply.sender.user_id},
-},
-{
-{text = 'رفع مدير : '..Managersz, data =msg.sender.user_id..'/statusManagersz/'..Message_Reply.sender.user_id},{text = 'رفع ادمن : '..Addictivez, data =msg.sender.user_id..'/statusAddictivez/'..Message_Reply.sender.user_id},
-},
-{
-{text = 'رفع مميز : '..Distinguishedz, data =msg.sender.user_id..'/statusDistinguishedz/'..Message_Reply.sender.user_id},
-},
-{
-{text = 'حظر العضو : '..BanGroupz, data =msg.sender.user_id..'/statusban/'..Message_Reply.sender.user_id},{text = 'كتم العضو : '..SilentGroupz, data =msg.sender.user_id..'/statusktm/'..Message_Reply.sender.user_id},
-},
-{
-{text = 'تنزيل الرتب : ', data =msg.sender.user_id..'/statusmem/'..Message_Reply.sender.user_id},
-},
-{
-{text = '- اخفاء الامر ', data ='/delAmr1'}
-}
-}
-}
-return LuaTele.sendText(msg.chat_id,msg.id,'*\n• يمكنك تحكم بلعضو عن طريق الازرار .*',"md",false, false, false, false, reply_markup)
-end
 
-if Text and Text:match('(%d+)/statusTheBasicsz/(%d+)') and data.Developers then
-local UserId = {Text:match('(%d+)/statusTheBasicsz/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if Redis:sismember(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-
-if Text and Text:match('(%d+)/statusOriginatorsz/(%d+)') and data.TheBasics then
-local UserId = {Text:match('(%d+)/statusOriginatorsz/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then 
-if Redis:sismember(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-
-if Text and Text:match('(%d+)/statusManagersz/(%d+)') and data.Originators then
-local UserId = {Text:match('(%d+)/statusManagersz/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if Redis:sismember(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-
-if Text and Text:match('(%d+)/statusAddictivez/(%d+)') and data.Managers then
-local UserId = {Text:match('(%d+)/statusAddictivez/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if Redis:sismember(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-
-if Text and Text:match('(%d+)/statusDistinguishedz/(%d+)') and data.Addictive then
-local UserId = {Text:match('(%d+)/statusDistinguishedz/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if Redis:sismember(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-
-if Text and Text:match('(%d+)/statusmem/(%d+)') and data.Developers then
-local UserId ={ Text:match('(%d+)/statusmem/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-Redis:srem(TEAMLANA.."TEAMLANA:Distinguished:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:Addictive:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:Managers:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:Originators:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:TheBasics:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
-Redis:srem(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
-LuaTele.setChatMemberStatus(ChatId,UserId[2],'restricted',{1,1,1,1,1,1,1,1,1})
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-if Text and Text:match('(%d+)/statusban/(%d+)') and data.Addictive then
-local UserId ={ Text:match('(%d+)/statusban/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if StatusCanOrNotCan(ChatId,UserId[2]) then
-return LuaTele.answerCallbackQuery(data.id,"\n•عذرآ لا تستطيع استخدام الامر على ( "..Controller(ChatId,UserId[2]).." } ", true)
-end
-if Redis:sismember(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
-LuaTele.setChatMemberStatus(ChatId,UserId[2],'restricted',{1,1,1,1,1,1,1,1,1})
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:BanGroup:Group"..ChatId,UserId[2])
-LuaTele.setChatMemberStatus(ChatId,UserId[2],'banned',0)
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-if Text and Text:match('(%d+)/statusktm/(%d+)') and data.Addictive then
-local UserId ={ Text:match('(%d+)/statusktm/(%d+)')}
-if tonumber(IdUser) == tonumber(UserId[1]) then
-if StatusSilent(ChatId,UserId[2]) then
-return LuaTele.answerCallbackQuery(data.id, "\n•عذرآ لا تستطيع استخدام الامر على ( "..Controller(ChatId,UserId[2]).." } ", true)
-end
-if Redis:sismember(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2]) then
-Redis:srem(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
-else
-Redis:sadd(TEAMLANA.."TEAMLANA:SilentGroup:Group"..ChatId,UserId[2])
-end
-return editrtp(ChatId,UserId[1],Msg_id,UserId[2])
-end
-end
-if Text and Text:match('/delAmr1') then
-local UserId = Text:match('/delAmr1')
-if data.Addictive then
-return LuaTele.deleteMessages(ChatId,{[1]= Msg_id})
-end
-end
 
 if text == 'معلوماتي' then
 local UserInfo = LuaTele.getUser(msg.sender.user_id)
@@ -11249,10 +11069,82 @@ LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارس�
 end
 end
 
-
-if text == "ريباك" or text == "بوت" then
-LuaTele.sendText(msg.chat_id,msg.id, "نعم ؟","md",true)
+if text == 'بوت' or text == 'البوت' then
+local photo = LuaTele.getUserProfilePhotos(TEAMLANA)
+local ban = LuaTele.getUser(TEAMLANA)
+local Namebot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
+local BotName = {
+'انت هطف؟ ',
+'ااقرا اسمي! ',
+'؟؟؟!!!',
+'يا طيب انا مش بوت! ',
+'شتريد؟ ',
+'عندي اسم ترا! ',
+'مو فله ترا',
+'انقلع',
+'توكل',
+'اسمي صعب؟ ',
+'بوت بوت بوت، جننتني انا مش بوت',
+'انطم',
+'ناديني ب اسمي برد',
+}
+NameBots = BotName[math.random(#BotName)]
+if ban.username then
+Creator = " "..ban.first_name.." "
+else
+Creator = " لانا\n"
 end
+local texxtt = ''..NameBots..''
+if photo.total_count > 0 then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = Creator, url = 't.me/'..UserBot..'?start'}, 
+},
+}
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(NameBots).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+end
+if text == (Redis:get(TEAMLANA.."Name:Bot") or "لانا") then
+local photo = LuaTele.getUserProfilePhotos(TEAMLANA)
+local ban = LuaTele.getUser(TEAMLANA)
+local Namebot = (Redis:get(TEAMLANA.."Name:Bot") or "لانا")
+local BotName = {
+'زعلانه',
+'عيونها وقلبها وخشمها',
+'خلاص يا بابا',
+'لبيه',
+'مش فاضيه ',
+'عيوني',
+'هلا',
+'وش بغيت',
+'مكورنه',
+'نعم روحي',
+'لبيه قلبي',
+'خير',
+'مريضه',
+'وش تريد؟',
+}
+NameBots = BotName[math.random(#BotName)]
+if ban.username then
+Creator = " "..ban.first_name.." "
+else
+Creator = " لانا\n"
+end
+local texxtt = ''..NameBots..''
+if photo.total_count > 0 then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = Creator, url = 't.me/'..UserBot..'?start'}, 
+},
+}
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(NameBots).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+end
+
 if text == "توب" or text == "التوب" then
 local reply_markup = LuaTele.replyMarkup{
 type = "inline",
@@ -11635,7 +11527,7 @@ elseif sender == 25 then
     F = '2300'
 Redis:incrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , F)
 local ballancee = Redis:get(TEAMLANA.."nool:flotysb"..msg.sender.user_id) or 0
-local teex = "اشعار ايداع "..neews.."\nالمبلغ : "..F.." بتكوين 🪙\nوظيفتك : "..K.."\nنوع العملية : اضافة راتب\nرصيدك الآن : "..ballancee.." بتكوين ??"
+local teex = "اشعار ايداع "..neews.."\nالمبلغ : "..F.." بتكوين 🪙\nوظيفتك : "..K.."\nنوع العملية : اضافة راتب\nرصيدك الآن : "..ballancee.." بتكوين 🪙"
 LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
 Redis:setex(TEAMLANA.."innoo" .. msg.sender.user_id,600, true)
 end
@@ -12136,13 +12028,13 @@ if text == '/start' then
 Redis:sadd(TEAMLANA..'TEAMLANA:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 if not Redis:get(TEAMLANA.."TEAMLANA:Start:Bot") then
-local CmdStart = '\n⌯ أهلآ بك في بوت '..(Redis:get(TEAMLANA.."TEAMLANA:Name:Bot") or "TEAMLANA")..
+local CmdStart = '\n⌯ أهلآ بك في بوت '..(Redis:get(TEAMLANA.."TEAMLANA:Name:Bot") or "لانا")..
 '\n⌯ اختصاص البوت حماية المجموعات'..
 '\n⌯ لتفعيل البوت عليك اتباع مايلي ...'..
 '\n⌯ اضف البوت الى مجموعتك'..
 '\n⌯ ارفعه ادمن  مشرف '..
 '\n⌯ ارسل كلمة  تفعيل  ليتم فعلت المجموعه'..
-'\n⌯ Dev🎖 ← ['..UserSudo..' ]'
+'\n⌯ Dev🎖 ← @['..UserSudo..' ]'
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {

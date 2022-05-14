@@ -9442,6 +9442,33 @@ Redis:del(TEAMLANA.."TEAMLANA:List:Manager"..msg_chat_id)
 end
 return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم مسح قائمه الردود","md",true)  
 end
+
+if text == 'طرد البوتات' then
+if not msg.Managers then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌭︙هاذا الامر لـ { '..Controller_Num(6)..' }* ',"md",true)  
+end
+if ChannelJoin(msg) == false then
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/'..Redis:get(TEAMLANA..'Channel:Join')}, },}}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n⌭︙لازم تشترك في قناة البوت لتقدر تستخدمني*',"md",false, false, false, false, reply_markup)
+end
+if msg.can_be_deleted_for_all_users == false then
+return LuaTele.sendText(msg_chat_id,msg_id,"\n*⌭︙ياطيب انا مش ادمن في الجروب ارفعني وارسل تفعيل *","md",true)  
+end
+if GetInfoBot(msg).BanUser == false then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌭︙البوت ليس لديه صلاحيه حظر المستخدمين* ',"md",true)  
+end
+local Info_Members = LuaTele.getSupergroupMembers(msg_chat_id, "Bots", "*", 0, 200)
+local List_Members = Info_Members.members
+x = 0
+for k, v in pairs(List_Members) do
+local Ban_Bots = LuaTele.setChatMemberStatus(msg.chat_id,v.member_id.user_id,'banned',0)
+if Ban_Bots.luatele == "ok" then
+x = x + 1
+end
+end
+return LuaTele.sendText(msg_chat_id,msg_id,"\n*⌭︙عدد البوتات الموجوده : "..#List_Members.."\n⌭︙تم طرد ( "..x.." ) بوت من الجروب *","md",true)  
+end
+
 if text == ("الردود") then
 if not msg.Managers then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ الامر يخص ( '..Controller_Num(6)..' ) ',"md",true)  

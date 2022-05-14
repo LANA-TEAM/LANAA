@@ -5034,33 +5034,37 @@ sendText(msg_chat_id,Text,0,'md')
 end 
 end 
 end 
-if text == 'السورس' or text == 'سورس' or text == 'ياسورس' or text == 'يا سورس' then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '❲ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓🎖 ❳', url = "https://t.me/trprogram"}
-},
-{
-{text = '- TRAKOS .', url = "https://t.me/TTRAKOS"}
-},
+if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
+video = "https://t.me/lanabot1/2"
+local Name = '**[⌭︙𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝙻𝙰𝙽𝙰](t.me/B_5_J)**'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '𝚃𝙾𝙺𝚈𝙾o',url="https://t.me/X_X_T"},{text = '  ',url="https://t.me/C5CO1"}},
+
+{{text = '𝚂𝙾𝚄𝚁𝙲𝙴', url="https://t.me/B_5_J"},{text = '𝚃𝚆𝙰𝚂𝙾𝙻',url="https://t.me/FYQBOT"}},
 }
-}
-return LuaTele.sendText(msg_chat_id,msg_id,"[ReBack Source .](t.me/trprogram)\n\n[سورس ريباك ،](t.me/trprogram)","md",true, false, false, false,reply_markup)
+local msgg = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendvideo?chat_id=" .. msg_chat_id .. "&video="..video.."&caption=".. URL.escape(Name).."&video="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+if text == 'المطور' or text == 'مطور' then
+local TextingDevTEAMLANA = Redis:get(TEAMLANA..'Texting:DevTEAMLANA')
+if TextingDevTEAMLANA then 
+return LuaTele.sendText(msg_chat_id,msg_id,TextingDevTEAMLANA,"md",true)  
+else
+local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
+local UserInfo = LuaTele.getUser(Sudo_Id)
+for Name_User in string.gmatch(UserInfo.first_name, "[^%s]+" ) do
+UserInfo.first_name = Name_User
+break
+end 
+if photo.total_count > 0 then
+return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
+'*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*', "md",true)
+else
+return LuaTele.sendText(msg_chat_id,msg_id,
+'*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true) 
 end
-if text == 'المطور' or text == 'مطور' or text == 'يامطور' or text == 'يا مطور' then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '❲ 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓🎖 ❳', url = "https://t.me/trprogram"}
-},
-{
-{text = '- TRAKOS .', url = "https://t.me/TTRAKOS"}
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,"[ReBack Source .](t.me/trprogram)\n\n[سورس ريباك ،](t.me/trprogram)","md",true, false, false, false,reply_markup)
+--return LuaTele.sendText(msg_chat_id,msg_id,'\n*⌭︙مطور البوت : {*['..UserInfo.first_name..'](tg://user?id='..UserInfo.id..')*}*',"md",true)  
+end
 end
 if text == 'تعطيل التحقق' then
 if not msg.Addictive then
@@ -11852,7 +11856,7 @@ return LuaTele.sendText(msg_chat_id,msg_id, "• عدد الجواهر التي 
 end
 end
 
-if text == '' then
+if text == 'ترتيب الاوامر' then
 if not msg.Managers then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n• الامر يخص ( '..Controller_Num(6)..' ) ',"md",true)  
 end

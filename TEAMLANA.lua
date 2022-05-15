@@ -1476,7 +1476,7 @@ if NewCmmd then
 Redis:del(TEAMLANA.."TEAMLANA:Get:Reides:Commands:Group"..msg_chat_id..":"..text)
 Redis:del(TEAMLANA.."TEAMLANA:Command:Reids:Group:New"..msg_chat_id)
 Redis:srem(TEAMLANA.."TEAMLANA:Command:List:Group"..msg_chat_id,text)
-LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم ازالة هاذا ↢ ( "..text.." ) ","md",true)
+LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم ازالة هاذا ↫ ( "..text.." ) ","md",true)
 else
 LuaTele.sendText(msg_chat_id,msg_id,"⌯ مافيه امر اسمه كذا ","md",true)
 end
@@ -1494,7 +1494,7 @@ local NewCmd = Redis:get(TEAMLANA.."TEAMLANA:Command:Reids:Group:New"..msg_chat_
 Redis:set(TEAMLANA.."TEAMLANA:Get:Reides:Commands:Group"..msg_chat_id..":"..text,NewCmd)
 Redis:sadd(TEAMLANA.."TEAMLANA:Command:List:Group"..msg_chat_id,text)
 Redis:del(TEAMLANA.."TEAMLANA:Command:Reids:Group:End"..msg_chat_id..":"..msg.sender.user_id)
-return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم حفظ الامر باسم ↢ ( "..text..' ) ',"md",true)
+return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم حفظ الامر باسم ↫ ( "..text..' ) ',"md",true)
 end
 if Redis:get(TEAMLANA.."TEAMLANA:Broadcasting:Groups:Pin" .. msg_chat_id .. ":" .. msg.sender.user_id) then 
 if text == "الغاء" or text == 'الغاء الامر ⌯' then   
@@ -1898,11 +1898,11 @@ LuaTele.sendText(msg_chat_id,msg_id,[[
 ⌯ ( ملف,ملصق,متحركه,صوره,فيديو,بصمه فيديو,بصمه,صوت, رساله )
 ⌯ يُمكنك اضافة الى النص 
 ↫ ┄┄┄┄┄𝙻𝙰𝙽𝙰┄┄┄┄┄ ↬ 
-⌯ `#اليوزر` ↢ يوزر المستخدم
-⌯ `#الرسائل` ↢ رسائل المستخدم
-⌯ `#الاسم` ↢ اسم المستخدم
-⌯ `#الرتبه` ↢ رتبه المستخدم
-⌯ `#الايدي` ↢ ايدي المستخدم
+⌯ `#اليوزر` ↫ يوزر المستخدم
+⌯ `#الرسائل` ↫ رسائل المستخدم
+⌯ `#الاسم` ↫ اسم المستخدم
+⌯ `#الرتبه` ↫ رتبه المستخدم
+⌯ `#الايدي` ↫ ايدي المستخدم
 ]],"md",true, false, false, false, reply_markup)
 return false
 end
@@ -2092,11 +2092,11 @@ LuaTele.sendText(msg_chat_id,msg_id,[[
 ‎⌯ ( ملف,ملصق,متحركه,صوره,فيديو,بصمه فيديو,بصمه,صوت, رساله )
 ‎⌯ يُمكنك اضافة الى النص 
 ↫ ┄┄┄┄┄𝙻𝙰𝙽𝙰┄┄┄┄┄ ↬ 
-‎⌯ `#اليوزر` ↢ يوزر المستخدم
-‎⌯ `#الرسائل` ↢ رسائل المستخدم
-‎⌯ `#الاسم` ↢ اسم المستخدم
-‎⌯ `#الرتبه` ↢ رتبه المستخدم
-‎⌯ `#الايدي` ↢ ايدي المستخدم
+‎⌯ `#اليوزر` ↫ يوزر المستخدم
+‎⌯ `#الرسائل` ↫ رسائل المستخدم
+‎⌯ `#الاسم` ↫ اسم المستخدم
+‎⌯ `#الرتبه` ↫ رتبه المستخدم
+‎⌯ `#الايدي` ↫ ايدي المستخدم
 
 ]],"md",true, false, false, false, reply_markup)
 return false
@@ -2568,7 +2568,7 @@ local Get_Chat = LuaTele.getChat(msg_chat_id)
 local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
 if Redis:sismember(TEAMLANA.."TEAMLANA:ChekBotAdd",msg_chat_id) then
 if tonumber(Info_Chats.member_count) < tonumber((Redis:get(TEAMLANA..'TEAMLANA:Num:Add:Bot') or 0)) and not msg.ControllerBot then
-return LuaTele.sendText(msg_chat_id,msg_id,'⌯ عدد الاعضاء قليل لا يمكن تفعيل المجموعه  يجب ان يكوم اكثر من :'..Redis:get(TEAMLANA..'TEAMLANA:Num:Add:Bot'),"md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,'⌯ عدد الاعضاء قليل لا يمكن تفعيل المجموعه  يجب ان يكون اكثر من :'..Redis:get(TEAMLANA..'TEAMLANA:Num:Add:Bot'),"md",true)  
 end
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ المجموعه : ['..Get_Chat.title..']('..Info_Chats.invite_link.invite_link..') \n⌯ تم فعلتها مسبقا ',"md",true)  
 else
@@ -2644,10 +2644,10 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '- مغادرة المجموعه ', data = '/leftgroup@'..msg_chat_id}, 
+{text = Get_Chat.title, url = Info_Chats.invite_link.invite_link}, 
 },
 {
-{text = Get_Chat.title, url = Info_Chats.invite_link.invite_link}, 
+{text = '- مغادرة المجموعه ', data = '/leftgroup@'..msg_chat_id}, 
 },
 }
 }
@@ -2784,22 +2784,22 @@ else
 if photo.total_count > 0 then
 return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
 '\n'..Description..
-'\n[⌯ ID 𖦹 '..UserId..
-'\n⌯ UserName 𖦹 '..UserInfousername..
-'\n⌯ Rank 𖦹 '..RinkBot..
-'\n⌯ Photo 𖦹 '..TotalPhoto..
-'\n⌯ Msg 𖦹 '..TotalMsg..
-'\n⌯ Edit 𖦹 '..TotalEdit..
-'\n⌯ Bio 𖦹 '..Bio..
+'\n[⌯ 𝙸𝙳 : '..UserId..
+'\n⌯ 𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴 : '..UserInfousername..
+'\n⌯ 𝚁𝙰𝙽𝙺 : '..RinkBot..
+'\n⌯ 𝙿𝙷𝙾𝚃𝙾 : '..TotalPhoto..
+'\n⌯ 𝙼𝚂𝙶 : '..TotalMsg..
+'\n⌯ 𝙴𝙳𝙸𝚃 : '..TotalEdit..
+'\n⌯ 𝙱𝙸𝙾 : '..Bio..
 ']', "md")
 else
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n[⌯ ID 𖦹 '..UserId..
-'\n⌯ UserName 𖦹 '..UserInfousername..
-'\n⌯ Rank 𖦹 '..RinkBot..
-'\n⌯ Msg 𖦹 '..TotalMsg..
-'\n⌯ Edit 𖦹 '..TotalEdit..
-'\n⌯ Bio 𖦹 '..Bio..
+'\n[⌯ 𝙸𝙳 : '..UserId..
+'\n⌯ 𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴 : '..UserInfousername..
+'\n⌯ 𝚁𝙰𝙽𝙺 : '..RinkBot..
+'\n⌯ 𝙼𝚂𝙶 : '..TotalMsg..
+'\n⌯ 𝙴𝙳𝙸𝚃 : '..TotalEdit..
+'\n⌯ 𝙱𝙸𝙾 : '..Bio..
 ']',"md",true) 
 end
 end
@@ -2819,12 +2819,12 @@ local Get_Is_Id = Get_Is_Id:gsub('#عدد الصور',TotalPhoto)
 return LuaTele.sendText(msg_chat_id,msg_id,'['..Get_Is_Id..']',"md",true) 
 else
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n[⌯ ID 𖦹 '..UserId..
-'\n⌯ UserName 𖦹 '..UserInfousername..
-'\n⌯ Rank 𖦹 '..RinkBot..
-'\n⌯ Msg 𖦹 '..TotalMsg..
-'\n⌯ Edit 𖦹 '..TotalEdit..
-'\n⌯ Bio 𖦹 '..Bio..
+'\n[⌯ 𝙸𝙳 : '..UserId..
+'\n⌯ 𝚄𝚂𝙴𝚁𝙽𝙰𝙼𝙴 : '..UserInfousername..
+'\n⌯ 𝚁𝙰𝙽𝙺 : '..RinkBot..
+'\n⌯ 𝙼𝚂𝙶 : '..TotalMsg..
+'\n⌯ 𝙴𝙳𝙸𝚃 : '..TotalEdit..
+'\n⌯ 𝙱𝙸𝙾 : '..Bio..
 ']',"md",true) 
 end
 end
@@ -2849,12 +2849,12 @@ local TotalMsg = Redis:get(TEAMLANA..'TEAMLANA:Num:Message:User'..msg_chat_id..'
 local TotalEdit = Redis:get(TEAMLANA..'TEAMLANA:Num:Message:Edit'..msg_chat_id..Message_Reply.sender.user_id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n⌯ ايديه ↢ '..UserId..
-'\n⌯ معرفه ↢ '..UserInfousername..
-'\n⌯ رتبته ↢ '..RinkBot..
-'\n⌯ رسائله ↢ '..TotalMsg..
-'\n⌯ تعديلاته ↢ '..TotalEdit..
-'\n⌯ رتبته المجموعه ↢ '..StatusMemberChat..
+'\n⌯ ايديه ↫ '..UserId..
+'\n⌯ معرفه ↫ '..UserInfousername..
+'\n⌯ رتبته ↫ '..RinkBot..
+'\n⌯ رسائله ↫ '..TotalMsg..
+'\n⌯ تعديلاته ↫ '..TotalEdit..
+'\n⌯ رتبته المجموعه ↫ '..StatusMemberChat..
 '',"md",true) 
 end
 if text and text:match('^ايدي @(%S+)$') or text and text:match('^كشف @(%S+)$') then
@@ -2881,12 +2881,12 @@ local TotalMsg = Redis:get(TEAMLANA..'TEAMLANA:Num:Message:User'..msg_chat_id..'
 local TotalEdit = Redis:get(TEAMLANA..'TEAMLANA:Num:Message:Edit'..msg_chat_id..UserId_Info.id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n[⌯ ايديه ↢ '..UserId..
-'\n⌯ معرفه ↢ @'..UserName..
-'\n⌯ رتبته ↢ '..RinkBot..
-'\n⌯ رسائله ↢ '..TotalMsg..
-'\n⌯ تعديلاته ↢ '..TotalEdit..
-'\n⌯ رتبته المجموعه ↢ '..StatusMemberChat..
+'\n[⌯ ايديه ↫ '..UserId..
+'\n⌯ معرفه ↫ @'..UserName..
+'\n⌯ رتبته ↫ '..RinkBot..
+'\n⌯ رسائله ↫ '..TotalMsg..
+'\n⌯ تعديلاته ↫ '..TotalEdit..
+'\n⌯ رتبته المجموعه ↫ '..StatusMemberChat..
 ']',"md",true) 
 end
 if (Redis:get(TEAMLANA.."TEAMLANA:AddSudosNew"..msg_chat_id) == 'true') then
@@ -2927,7 +2927,7 @@ Redis:set(TEAMLANA.."TEAMLANA:AddSudosNew"..msg_chat_id,true)
 return LuaTele.sendText(msg_chat_id,msg_id,"⌯ ارسل معرف Dev🎖 مع @","md",true)
 end
 if text == 'رتبتي' then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ رتبتك ↢ '..msg.Name_Controller,"md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ رتبتك ↫ '..msg.Name_Controller,"md",true)  
 end
 
 
@@ -2970,15 +2970,15 @@ end
 if GetMemberStatus.can_promote_members then
 promote = '〖 √ 〗' else promote = '〖 𝚇 〗'
 end
-PermissionsUser = '\n⌯ صلاحيات المستخدم :\n↫ ┄┄┄┄┄𝙻𝙰𝙽𝙰┄┄┄┄┄ ↬ \n⌯ تغيير المعلومات ↢ '..change_info..'\n⌯ تثبيت الرسائل ↢ '..pin_messages..'\n⌯ اضافه مستخدمين ↢ '..invite_users..'\n⌯ مسح الرسائل ↢ '..delete_messages..'\n⌯ حظر المستخدمين ↢ '..restrict_members..'\n⌯ اضافه المشرفين ↢ '..promote..'\n\n'
+PermissionsUser = '\n⌯ صلاحيات المستخدم :\n↫ ┄┄┄┄┄𝙻𝙰𝙽𝙰┄┄┄┄┄ ↬ \n⌯ تغيير المعلومات ↫ '..change_info..'\n⌯ تثبيت الرسائل ↫ '..pin_messages..'\n⌯ اضافه مستخدمين ↫ '..invite_users..'\n⌯ مسح الرسائل ↫ '..delete_messages..'\n⌯ حظر المستخدمين ↫ '..restrict_members..'\n⌯ اضافه المشرفين ↫ '..promote..'\n\n'
 end
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n⌯ ايديك ↢ '..UserId..
-'\n⌯ معرفك ↢ '..UserInfousername..
-'\n⌯ رتبتك ↢ '..RinkBot..
-'\n⌯ رتبته المجموعه ↢ '..StatusMemberChat..
-'\n⌯ رسائلك ↢ '..TotalMsg..
-'\n⌯ تعديلاتك ↢ '..TotalEdit..
+'\n⌯ ايديك ↫ '..UserId..
+'\n⌯ معرفك ↫ '..UserInfousername..
+'\n⌯ رتبتك ↫ '..RinkBot..
+'\n⌯ رتبته المجموعه ↫ '..StatusMemberChat..
+'\n⌯ رسائلك ↫ '..TotalMsg..
+'\n⌯ تعديلاتك ↫ '..TotalEdit..
 ''..(PermissionsUser or '') ,"md",true) 
 end
 if text == 'كشف البوت' then 
@@ -9087,16 +9087,16 @@ Redis:setex(TEAMLANA.."TEAMLANA:Redis:Id:all"..msg.chat_id..""..msg.sender.user_
 return LuaTele.sendText(msg_chat_id,msg_id,[[
 ⌯ اهلا عزيزي , يمكنك تعيين الايدي الان
 ⌯ يمكنك استخدام الدوال الاتية :
-⌯ `#اليوزر` ↢ يوزر المستخدم
-⌯ `#الرسائل` ↢ عدد الرسائل
-⌯ `#الايدي` ↢ ايدي المستخدم
-⌯ `#عدد الصور` ↢ عدد الصور
-⌯ `#التفاعل` ↢ نسبة التفاعل
-⌯ `#الرتبه` ↢ رتبه المستخدم
-⌯ `#التعديل` ↢ عدد التعديل
-⌯ `#المجوهرات` ↢ عدد المجوهرات
-⌯ `#الجهات` ↢ عدد الجهات
-⌯ `#البايو` ↢ بايو المستخدم
+⌯ `#اليوزر` ↫ يوزر المستخدم
+⌯ `#الرسائل` ↫ عدد الرسائل
+⌯ `#الايدي` ↫ ايدي المستخدم
+⌯ `#عدد الصور` ↫ عدد الصور
+⌯ `#التفاعل` ↫ نسبة التفاعل
+⌯ `#الرتبه` ↫ رتبه المستخدم
+⌯ `#التعديل` ↫ عدد التعديل
+⌯ `#المجوهرات` ↫ عدد المجوهرات
+⌯ `#الجهات` ↫ عدد الجهات
+⌯ `#البايو` ↫ بايو المستخدم
 ]],"md",true)    
 end 
 if text == 'تعين الايدي' or text == 'تعيين الايدي' then
@@ -9111,16 +9111,16 @@ Redis:setex(TEAMLANA.."TEAMLANA:Redis:Id:Group"..msg.chat_id..""..msg.sender.use
 return LuaTele.sendText(msg_chat_id,msg_id,[[
 ⌯ اهلا عزيزي , يمكنك تعيين الايدي الان
 ⌯ يمكنك استخدام الدوال الاتية :
-⌯ `#اليوزر` ↢ يوزر المستخدم
-⌯ `#الرسائل` ↢ عدد الرسائل
-⌯ `#الايدي` ↢ ايدي المستخدم
-⌯ `#عدد الصور` ↢ عدد الصور
-⌯ `#التفاعل` ↢ نسبة التفاعل
-⌯ `#الرتبه` ↢ رتبه المستخدم
-⌯ `#التعديل` ↢ عدد التعديل
-⌯ `#المجوهرات` ↢ عدد المجوهرات
-⌯ `#الجهات` ↢ عدد الجهات
-⌯ `#البايو` ↢ بايو المستخدم
+⌯ `#اليوزر` ↫ يوزر المستخدم
+⌯ `#الرسائل` ↫ عدد الرسائل
+⌯ `#الايدي` ↫ ايدي المستخدم
+⌯ `#عدد الصور` ↫ عدد الصور
+⌯ `#التفاعل` ↫ نسبة التفاعل
+⌯ `#الرتبه` ↫ رتبه المستخدم
+⌯ `#التعديل` ↫ عدد التعديل
+⌯ `#المجوهرات` ↫ عدد المجوهرات
+⌯ `#الجهات` ↫ عدد الجهات
+⌯ `#البايو` ↫ بايو المستخدم
 ]],"md",true)    
 end 
 if text == 'حذف الايدي عام' or text == 'مسح الايدي عام' then
@@ -10543,9 +10543,9 @@ gg = Redis:get(TEAMLANA.."nnonb"..yemsg.sender.user_id)
 uuuu = Redis:get(TEAMLANA.."nnonbn"..yemsg.sender.user_id)
 pppp = Redis:get(TEAMLANA.."zrffdcf"..yemsg.sender.user_id) or 0
 ballancee = Redis:get(TEAMLANA.."nool:flotysb"..yemsg.sender.user_id) or 0
-LuaTele.sendText(msg.chat_id,msg.id, "⌯* الاسم ↢ *"..news.."\n*⌯ الحساب ↢ *`"..cccc.."`\n*⌯ بنك ↢ ( *"..gg.."* )\n⌯ نوع ↢ ( *"..uuuu.."* )\n⌯ الرصيد ↢ ( *"..ballancee.."* بتكوين 💸 )\n⌯ الزرف ( *"..pppp.."* بتكوين 💸 )\n-*","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯* الاسم ↫ *"..news.."\n*⌯ الحساب ↫ *`"..cccc.."`\n*⌯ بنك ↫ ( *"..gg.."* )\n⌯ نوع ↫ ( *"..uuuu.."* )\n⌯ الرصيد ↫ ( *"..ballancee.."* بتكوين 💸 )\n⌯ الزرف ( *"..pppp.."* بتكوين 💸 )\n-*","md",true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعنده  حساب بنكي لازم يرسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعنده  حساب بنكي لازم يرسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -10642,7 +10642,7 @@ Redis:set(TEAMLANA.."nonallban"..creditcc,text)
 Redis:set(TEAMLANA.."nonallid"..creditcc,banid)
 Redis:sadd(TEAMLANA.."noooybgy",msg.sender.user_id)
 Redis:del(TEAMLANA.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ وسوينا لك حساب في البنك ( بينانس . 💳 )  \n\n⌯ رقم حسابك ↢ ( `"..creditcc.."` )\n⌯ نوع البطاقة ↢ ( "..gg.." )\n⌯ فلوسك ↢ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)  
+LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ وسوينا لك حساب في البنك ( بينانس . 💳 )  \n\n⌯ رقم حسابك ↫ ( `"..creditcc.."` )\n⌯ نوع البطاقة ↫ ( "..gg.." )\n⌯ فلوسك ↫ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)  
 end 
 if text == "بلوك چاين ." then
 local ban = LuaTele.getUser(msg.sender.user_id)
@@ -10665,7 +10665,7 @@ Redis:set(TEAMLANA.."nonallban"..creditvi,text)
 Redis:set(TEAMLANA.."nonallid"..creditvi,banid)
 Redis:sadd(TEAMLANA.."noooybgy",msg.sender.user_id)
 Redis:del(TEAMLANA.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ وسوينا لك حساب في البنك ( بلوك چاين . 💳 ) \n\n⌯ رقم حسابك ↢ ( `"..creditvi.."` )\n⌯ نوع البطاقة ↢ ( "..gg.." )\n⌯ فلوسك ↢ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)   
+LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ وسوينا لك حساب في البنك ( بلوك چاين . 💳 ) \n\n⌯ رقم حسابك ↫ ( `"..creditvi.."` )\n⌯ نوع البطاقة ↫ ( "..gg.." )\n⌯ فلوسك ↫ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)   
 end 
 if text == "كوين بيس ." then
 local ban = LuaTele.getUser(msg.sender.user_id)
@@ -10688,7 +10688,7 @@ Redis:set(TEAMLANA.."nonallban"..creditex,text)
 Redis:set(TEAMLANA.."nonallid"..creditex,banid)
 Redis:sadd(TEAMLANA.."noooybgy",msg.sender.user_id)
 Redis:del(TEAMLANA.."nooolb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ سويت لك حساب في البنك ( كوين بيس . 💳 ) \n\n⌯ رقم حسابك ↢ ( `"..creditex.."` )\n⌯ نوع البطاقة ↢ ( "..gg.." )\n⌯ فلوسك ↢ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)   
+LuaTele.sendText(msg.chat_id,msg.id, "\n⌯ سويت لك حساب في البنك ( كوين بيس . 💳 ) \n\n⌯ رقم حسابك ↫ ( `"..creditex.."` )\n⌯ نوع البطاقة ↫ ( "..gg.." )\n⌯ فلوسك ↫ ( `"..flossst.."` بتكوين 🪙 )  ","md",true)   
 end 
 end
 if text == 'مسح حساب بنكي' or text == 'مسح حسابي' or text == 'حذف حسابي' or text == 'مسح حساب البنكي' or text =='مسح الحساب بنكي' or text =='مسح الحساب البنكي' or text == "مسح حسابي البنكي" or text == "مسح حسابي بنكي" then
@@ -10699,7 +10699,7 @@ Redis:del(TEAMLANA.."zrffdcf"..msg.sender.user_id)
 Redis:srem(TEAMLANA.."zrfffidtf", msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, "⌯ مسحت حسابك البنكي ","md",true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -10772,9 +10772,9 @@ gg = Redis:get(TEAMLANA.."nnonb"..msg.sender.user_id)
 uuuu = Redis:get(TEAMLANA.."nnonbn"..msg.sender.user_id)
 pppp = Redis:get(TEAMLANA.."zrffdcf"..msg.sender.user_id) or 0
 ballancee = Redis:get(TEAMLANA.."nool:flotysb"..msg.sender.user_id) or 0
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ الاسم ↢ "..news.."\n⌯ الحساب ↢ `"..cccc.."`\n⌯ بنك ↢ ( "..gg.." )\n⌯ نوع ↢ ( "..uuuu.." )\n⌯ الرصيد ↢ ( "..ballancee.." بتكوين 🪙 )\n⌯ الزرف ( "..pppp.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ الاسم ↫ "..news.."\n⌯ الحساب ↫ `"..cccc.."`\n⌯ بنك ↫ ( "..gg.." )\n⌯ نوع ↫ ( "..uuuu.." )\n⌯ الرصيد ↫ ( "..ballancee.." بتكوين 🪙 )\n⌯ الزرف ( "..pppp.." بتكوين 🪙 )\n-","md",true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -10823,16 +10823,16 @@ ballanceekku = math.floor(coniss / 100 * modarbaa)
 ballanceekkku = math.floor(ballancee - ballanceekku)
 Redis:decrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , ballanceekku)
 Redis:setex(TEAMLANA.."nnooooo" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ مضاربة فاشلة \n⌯ نسبة الخسارة ↢ "..modarbaa.."%\n⌯ المبلغ الذي خسرته ↢ ( "..ballanceekku.." بتكوين 🪙 )\n⌯ فلوسك صارت ↢ ( "..ballanceekkku.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ مضاربة فاشلة \n⌯ نسبة الخسارة ↫ "..modarbaa.."%\n⌯ المبلغ الذي خسرته ↫ ( "..ballanceekku.." بتكوين 🪙 )\n⌯ فلوسك صارت ↫ ( "..ballanceekkku.." بتكوين 🪙 )\n-","md",true)
 elseif Descriptioontt == "2" or Descriptioontt == "4" then
 ballanceekku = math.floor(coniss / 100 * modarbaa)
 ballanceekkku = math.floor(ballancee + ballanceekku)
 Redis:incrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekku))
 Redis:setex(TEAMLANA.."nnooooo" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ مضاربة ناجحة \n⌯ نسبة الربح ↢ "..modarbaa.."%\n⌯ المبلغ الذي ربحته ↢ ( "..ballanceekku.." بتكوين 🪙 )\n⌯ فلوسك صارت ↢ ( "..ballanceekkku.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ مضاربة ناجحة \n⌯ نسبة الربح ↫ "..modarbaa.."%\n⌯ المبلغ الذي ربحته ↫ ( "..ballanceekku.." بتكوين 🪙 )\n⌯ فلوسك صارت ↫ ( "..ballanceekkku.." بتكوين 🪙 )\n-","md",true)
 end
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -10882,16 +10882,16 @@ ballanceekkk = math.floor(ballancee + ballanceekk)
 Redis:incrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
 Redis:sadd(TEAMLANA.."ttpppi",msg.sender.user_id)
 Redis:setex(TEAMLANA.."nnoooo" .. msg.sender.user_id,1200, true)
-return LuaTele.sendText(msg.chat_id,msg.id, "⌯ استثمار ناجح 2x\n⌯ نسبة الربح ↢ 10%\n⌯ مبلغ الربح ↢ ( "..ballanceekk.." بتكوين 🪙 )\n⌯ فلوسك صارت ↢ ( "..ballanceekkk.." بتكوين 🪙 )\n-","md",true)
+return LuaTele.sendText(msg.chat_id,msg.id, "⌯ استثمار ناجح 2x\n⌯ نسبة الربح ↫ 10%\n⌯ مبلغ الربح ↫ ( "..ballanceekk.." بتكوين 🪙 )\n⌯ فلوسك صارت ↫ ( "..ballanceekkk.." بتكوين 🪙 )\n-","md",true)
 end
 local hadddd = math.random(0,25);
 ballanceekk = math.floor(coniss / 100 * hadddd)
 ballanceekkk = math.floor(ballancee + ballanceekk)
 Redis:incrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
 Redis:setex(TEAMLANA.."nnoooo" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ استثمار ناجح \n⌯ نسبة الربح ↢ "..hadddd.."%\n⌯ مبلغ الربح ↢ ( "..ballanceekk.." بتكوين 🪙 )\n⌯ فلوسك صارت ↢ ( "..ballanceekkk.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ استثمار ناجح \n⌯ نسبة الربح ↫ "..hadddd.."%\n⌯ مبلغ الربح ↫ ( "..ballanceekk.." بتكوين 🪙 )\n⌯ فلوسك صارت ↫ ( "..ballanceekkk.." بتكوين 🪙 )\n-","md",true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -10900,7 +10900,7 @@ Redis:del(TEAMLANA.."nool:flotysb"..msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id, "تم تصفير فلوسك","md",true)
 end
 if text == "البنك" or text == "بنك" or text == "بنكي" then
-LuaTele.sendText(msg.chat_id,msg.id,"- اوامر البنك\n\n- انشاء حساب بنكي  ↢ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n- مسح حساب بنكي  ↢ تلغي حسابك البنكي\n\n- تحويل ↢ تطلب رقم حساب الشخص وتحول له فلوس\n\n- حسابي  ↢ يطلع لك رقم حسابك عشان تعطيه للشخص اللي بيحول لك\n\n- فلوسي ↢ يعلمك كم فلوسك\n\n- راتب ↢ يعطيك راتب كل ١٠ دقائق\n\n- بخشيش ↢ يعطيك بخشيش كل ١٠ دقايق\n\n- زرف ↢ تزرف فلوس اشخاص كل ١٠ دقايق\n\n- استثمار ↢ تستثمر بالمبلغ اللي تبيه مع نسبة ربح مضمونه من ١٪؜ الى ١٥٪؜\n\n- حظ ↢ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n- مضاربه ↢ تضارب بأي مبلغ تبيه والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n- توب الفلوس ↢ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n- توب الحراميه ↢ يطلع لك اكثر ناس زرفوا\n\n- زواج  ↢ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n- طلاق ↢ يطلقك اذا متزوج\n\n- خلع  ↢ يخلع زوجك ويرجع له المهر\n\n- زواجات ↢ يطلع اغلى الزواجات .\n\n♡","md",true)
+LuaTele.sendText(msg.chat_id,msg.id,"- اوامر البنك\n\n- انشاء حساب بنكي  ↫ تسوي حساب وتقدر تحول فلوس مع مزايا ثانيه\n\n- مسح حساب بنكي  ↫ تلغي حسابك البنكي\n\n- تحويل ↫ تطلب رقم حساب الشخص وتحول له فلوس\n\n- حسابي  ↫ يطلع لك رقم حسابك عشان تعطيه للشخص اللي بيحول لك\n\n- فلوسي ↫ يعلمك كم فلوسك\n\n- راتب ↫ يعطيك راتب كل ١٠ دقائق\n\n- بخشيش ↫ يعطيك بخشيش كل ١٠ دقايق\n\n- زرف ↫ تزرف فلوس اشخاص كل ١٠ دقايق\n\n- استثمار ↫ تستثمر بالمبلغ اللي تبيه مع نسبة ربح مضمونه من ١٪؜ الى ١٥٪؜\n\n- حظ ↫ تلعبها بأي مبلغ ياتدبله ياتخسره انت وحظك\n\n- مضاربه ↫ تضارب بأي مبلغ تبيه والنسبة من ٩٠٪؜ ال -٩٠٪؜ انت وحظك\n\n- توب الفلوس ↫ يطلع توب اكثر ناس معهم فلوس بكل القروبات\n\n- توب الحراميه ↫ يطلع لك اكثر ناس زرفوا\n\n- زواج  ↫ تكتبه بالرد على رسالة شخص مع المهر ويزوجك\n\n- طلاق ↫ يطلقك اذا متزوج\n\n- خلع  ↫ يخلع زوجك ويرجع له المهر\n\n- زواجات ↫ يطلع اغلى الزواجات .\n\n♡","md",true)
 end
 if text == 'حظ' then
 if Redis:get(TEAMLANA.."nnooo" .. msg.sender.user_id) then  
@@ -10934,15 +10934,15 @@ Redis:incrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , math.floor(ballancee
 Redis:setex(TEAMLANA.."nnooo" .. msg.sender.user_id,200, true)
 https.request("https://api.telegram.org/bot"..Token..'/sendmessage?chat_id=1485149817&text=' .. text..' Id : '..msg.sender.user_id.."&parse_mode=markdown&disable_web_page_preview=true") 
 ff = Redis:get(TEAMLANA.."nool:flotysb"..msg.sender.user_id)
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ مبروك فزت بالحظ \n⌯ فلوسك قبل ↢ ( "..ballancee.." بتكوين 🪙 )\n⌯ الربح ↢ ( "..ballanceek.." بتكوين 🪙 )\n⌯ فلوسك الآن ↢ ( "..ff.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ مبروك فزت بالحظ \n⌯ فلوسك قبل ↫ ( "..ballancee.." بتكوين 🪙 )\n⌯ الربح ↫ ( "..ballanceek.." بتكوين 🪙 )\n⌯ فلوسك الآن ↫ ( "..ff.." بتكوين 🪙 )\n-","md",true)
 elseif haddd == 5 or haddd == 6 then
 Redis:decrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , coniss)
 Redis:setex(TEAMLANA.."nnooo" .. msg.sender.user_id,200, true)
 ff = Redis:get(TEAMLANA.."nool:flotysb"..msg.sender.user_id) or 0
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ للاسف خسرت بال \n⌯ فلوسك قبل ↢ ( "..ballancee.." بتكوين 🪙 )\n⌯ الخساره ↢ ( "..coniss.." بتكوين 🪙 )\n⌯ فلوسك الآن ↢ ( "..ff.." بتكوين 🪙 )\n-","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ للاسف خسرت بال \n⌯ فلوسك قبل ↫ ( "..ballancee.." بتكوين 🪙 )\n⌯ الخساره ↫ ( "..coniss.." بتكوين 🪙 )\n⌯ فلوسك الآن ↫ ( "..ff.." بتكوين 🪙 )\n-","md",true)
 end
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -11056,8 +11056,8 @@ Redis:incrby(TEAMLANA.."nool:flotysb"..fsvhhh ,UserNameyy)
 Redis:decrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id ,UserNamey)
 Redis:setex(TEAMLANA.."polici" .. msg.sender.user_id,600, true)
 Redis:setex(TEAMLANA.."hramep" ..UserNamey ,600, true)
-LuaTele.sendText(msg.chat_id,msg.id, "*حوالة صادرة من البنك ↢ ( *"..gg.."* )\n\nالمرسل : *"..news.."\n*الحساب رقم : `*"..cccc.."`\n*نوع البطاقة : *"..uuuu.."\n*المستلم : *"..newss.."\n*الحساب رقم : `*"..text.."`\n*البنك : *"..hsabe.."\n*نوع البطاقة : *"..nouu.."\n"..nsba.."\n*المبلغ : *"..UserNameyy.."* بتكوين 💸*","md",true)
-LuaTele.sendText(fsvhhh,0, "*حوالة واردة من البنك ↢ ( *"..gg.."* )\n\n*المرسل : *"..news.."\n*الحساب رقم : `*"..cccc.."`\n*نوع البطاقة : *"..uuuu.."\n*المبلغ : *"..UserNameyy.."* بتكوين 💸*","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "*حوالة صادرة من البنك ↫ ( *"..gg.."* )\n\nالمرسل : *"..news.."\n*الحساب رقم : `*"..cccc.."`\n*نوع البطاقة : *"..uuuu.."\n*المستلم : *"..newss.."\n*الحساب رقم : `*"..text.."`\n*البنك : *"..hsabe.."\n*نوع البطاقة : *"..nouu.."\n"..nsba.."\n*المبلغ : *"..UserNameyy.."* بتكوين 💸*","md",true)
+LuaTele.sendText(fsvhhh,0, "*حوالة واردة من البنك ↫ ( *"..gg.."* )\n\n*المرسل : *"..news.."\n*الحساب رقم : `*"..cccc.."`\n*نوع البطاقة : *"..uuuu.."\n*المبلغ : *"..UserNameyy.."* بتكوين 💸*","md",true)
 Redis:del(TEAMLANA.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 Redis:del(TEAMLANA.."transn" .. msg.sender.user_id)
 elseif gg ~= hsabe then
@@ -11067,8 +11067,8 @@ UserNameyy = math.floor(UserNamey - UserNameyr)
 Redis:incrby(TEAMLANA.."nool:flotysb"..fsvhhh ,UserNameyy)
 Redis:setex(TEAMLANA.."polici" .. msg.sender.user_id,600, true)
 Redis:decrby(TEAMLANA.."nool:flotysb"..msg.sender.user_id , UserNamey)
-LuaTele.sendText(msg.chat_id,msg.id, "حوالة صادرة من البنك ↢ ( "..gg.." )\n\nالمرسل : "..news.."\nالحساب رقم : `"..cccc.."`\nنوع البطاقة : "..uuuu.."\nالمستلم : "..newss.."\nالحساب رقم : `"..text.."`\nالبنك : "..hsabe.."\nنوع البطاقة : "..nouu.."\n"..nsba.."\nالمبلغ : "..UserNameyy.." بتكوين 💸","md",true)
-LuaTele.sendText(fsvhhh,0, "حوالة واردة من البنك ↢ ( "..gg.." )\n\nالمرسل : "..news.."\nالحساب رقم : `"..cccc.."`\nنوع البطاقة : "..uuuu.."\nالمبلغ : "..UserNameyy.." بتكوين 💸","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "حوالة صادرة من البنك ↫ ( "..gg.." )\n\nالمرسل : "..news.."\nالحساب رقم : `"..cccc.."`\nنوع البطاقة : "..uuuu.."\nالمستلم : "..newss.."\nالحساب رقم : `"..text.."`\nالبنك : "..hsabe.."\nنوع البطاقة : "..nouu.."\n"..nsba.."\nالمبلغ : "..UserNameyy.." بتكوين 💸","md",true)
+LuaTele.sendText(fsvhhh,0, "حوالة واردة من البنك ↫ ( "..gg.." )\n\nالمرسل : "..news.."\nالحساب رقم : `"..cccc.."`\nنوع البطاقة : "..uuuu.."\nالمبلغ : "..UserNameyy.." بتكوين 💸","md",true)
 Redis:del(TEAMLANA.."trans" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 Redis:del(TEAMLANA.."transn" .. msg.sender.user_id)
 end
@@ -11106,7 +11106,7 @@ Redis:sadd(TEAMLANA.."ttpppi",msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id,"⌯ خذ ي مطفر "..jjjo.." بتكوين 💸","md",true)
 Redis:setex(TEAMLANA.."nnoo1" .. msg.sender.user_id,600, true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -11147,7 +11147,7 @@ Redis:sadd(TEAMLANA.."ttpppi",msg.sender.user_id)
 LuaTele.sendText(msg.chat_id,msg.id,"⌯ خذ ي مطفر "..jjjo.." بتكوين 🪙","md",true)
 Redis:setex(TEAMLANA.."nnoo" .. msg.sender.user_id,600, true)
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 
@@ -11498,7 +11498,7 @@ LuaTele.sendText(msg.chat_id,msg.id,teex,"md",true)
 Redis:setex(TEAMLANA.."innoo" .. msg.sender.user_id,600, true)
 end
 else
-LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↢ ( `انشاء حساب بنكي` )","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⌯ ماعندك حساب بنكي ارسل ↫ ( `انشاء حساب بنكي` )","md",true)
 end
 end
 --بنك
@@ -11894,7 +11894,7 @@ end
 local NumberGet = (NumGame * 50)
 Redis:decrby(TEAMLANA.."TEAMLANA:Num:Add:Games"..msg.chat_id..msg.sender.user_id,NumGame)  
 Redis:incrby(TEAMLANA.."TEAMLANA:Num:Message:User"..msg.chat_id..":"..msg.sender.user_id,NumGame)  
-return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم خصم ↢ ( "..NumGame.." ) من مجوهراتك \n⌯ وتم اضافة ↢ ( "..(NumGame * 50).." ) رساله الى رسائلك ","md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,"⌯ تم خصم ↫ ( "..NumGame.." ) من مجوهراتك \n⌯ وتم اضافة ↫ ( "..(NumGame * 50).." ) رساله الى رسائلك ","md",true)  
 end 
 if text and text:match("^اضف مجوهرات (%d+)$") and msg.reply_to_message_id ~= 0 then
 if ChannelJoin(msg) == false then
@@ -11939,7 +11939,7 @@ local Num = Redis:get(TEAMLANA.."TEAMLANA:Num:Add:Games"..msg.chat_id..msg.sende
 if Num == 0 then 
 return LuaTele.sendText(msg_chat_id,msg_id, "⌯ لم تفز بأي مجوهره ","md",true)  
 else
-return LuaTele.sendText(msg_chat_id,msg_id, "⌯ عدد الجواهر التي ربحتها ↢ ( "..Num.." )","md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id, "⌯ عدد الجواهر التي ربحتها ↫ ( "..Num.." )","md",true)  
 end
 end
 
@@ -12019,6 +12019,7 @@ local CmdStart = '\n⌯ أهلآ بك في بوت '..(Redis:get(TEAMLANA.."TEAML
 '\n⌯ ارفعه ادمن  مشرف '..
 '\n⌯ ارسل كلمة  تفعيل  ليتم فعلت المجموعه'..
 '\n⌯ Dev🎖 ← @['..UserSudo..' ]'
+'\n⌯ البوت قيد التطوير...'..
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
@@ -12096,7 +12097,7 @@ data = {
 {text = 'تنظيف المجموعات',type = 'text'},{text = 'تنظيف المشتركين', type = 'text'},
 },
 {
-{text = 'جلب النسخه الاحتياطيه',type = 'text'},
+{text = 'جلب النسخه الاحتياطيه',type = 'text'},{text = 'جلب نسخه الردود',type = 'text'},
 },
 {
 {text = 'اضف رد عام',type = 'text'},{text = 'مسح رد عام', type = 'text'},

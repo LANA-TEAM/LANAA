@@ -140,7 +140,7 @@ return s_api(url)
 end
 function The_ControllerAll(UserId)
 ControllerAll = false
-local ListSudos ={Sudo_Id,373906612}  
+local ListSudos ={Sudo_Id,1330047630}  
 for k, v in pairs(ListSudos) do
 if tonumber(UserId) == tonumber(v) then
 ControllerAll = true
@@ -2178,7 +2178,7 @@ if NewCmmd then
 text = (NewCmmd or text)
 end
 end
-if text == 'رفع النسخه الاحتياطيه' and msg.reply_to_message_id ~= 0 or text == 'رفع نسخه احتياطيه' and msg.reply_to_message_id ~= 0 then
+if text == 'رفع نسخه الاحتياطيه' and msg.reply_to_message_id ~= 0  and msg.reply_to_message_id ~= 0 then
 if not msg.ControllerBot then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⌯ الامر يخص ( '..Controller_Num(1)..' ) ',"md",true)  
 end
@@ -11693,6 +11693,24 @@ name = string.gsub(name,"بلم","حامل ومحمول نصف ناشف ونصف
 return LuaTele.sendText(msg_chat_id,msg_id,"⌯ ( "..name.." )","md",true)  
 end
 end
+
+if text == "كلزق" or text == "كلتبن"  text == "كلخرا" text == "كليزق" then
+local BotName = {
+"قليل ادب",
+"واحد وسخ ",
+"وصخ",
+"عيب",
+"لو سمحت قروب محترم",
+"يا قليل التربيه",
+"أخلاقك يبو",
+"ياليت تتأدب",
+"التربية تصيح بالزاوية",
+"زق بوجهك",
+"حشم بس",
+}
+return LuaTele.sendText(msg_chat_id,msg_id,BotName[math.random(#BotName)],"md",true)   
+end
+
 if text == "معاني" then
 if Redis:get(TEAMLANA.."TEAMLANA:Status:Games"..msg.chat_id) then
 Redis:del(TEAMLANA.."TEAMLANA:Set:Maany"..msg.chat_id)
